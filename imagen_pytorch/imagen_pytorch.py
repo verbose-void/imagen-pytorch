@@ -1607,8 +1607,9 @@ class Unet(nn.Module):
 
             text_tokens = text_tokens[:, :self.max_text_len]
 
-            if exists(text_mask):
-                text_mask = text_mask[:, :self.max_text_len]
+            # don't need text masks (this for some reason breaks forward)
+            # if exists(text_mask):
+            #     text_mask = text_mask[:, :self.max_text_len]
 
             text_tokens_len = text_tokens.shape[1]
             remainder = self.max_text_len - text_tokens_len
